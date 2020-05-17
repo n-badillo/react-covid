@@ -1,15 +1,12 @@
 import axios from 'axios';
+import { invalid } from 'moment';
 
 const url = 'https://api.covid19api.com/total/country/united-states';
 
 export const fetchData = async () => {
   try{
-    //const { data: { province, city, cases } } = await axios.get(url);
     const response = await axios.get(url);
-    // return { province, city, cases };
 
-    
-    //const data = await response.json();
     console.log(response.data);
     const indivData = response.data;
 
@@ -17,28 +14,38 @@ export const fetchData = async () => {
     const Active = indivData[indivData.length - 1].Active;
     const Deaths = indivData[indivData.length - 1].Deaths;
     const Recovered = indivData[indivData.length - 1].Recovered;
+    const cDate = indivData[indivData.length - 1].Date;
 
-    return { Confirmed, Active, Deaths, Recovered };
+    const xlabels = [];
+  const ylabels = [];
+
+  
+  
+  for(var i = 0; i < 116; i++){
+    xlabels.push(indivData[i].Date);
+    ylabels.push(indivData[i].Confirmed);
+  }
+
+  console.log(xlabels);
+  console.log(ylabels);
+
+    return { Confirmed, Active, Deaths, Recovered, cDate , xlabels, ylabels };
   } catch ( error ){
 
   } 
-}
+};
 
-export const fetchDailyData = async() => {
-  try{
-    const response = await axios.get(url);
+// export const fetchDailyData = async() => {
+//   try{
+//     const response = await axios.get(url);
 
-    console.log(response.data);
-    const indivData = response.data;
+//     console.log(response.data);
+//     const indivData = response.data;
 
-    const xaxis = [];
-    const yaxis = [];
-
-    for(var counter = 0; counter < indivData.length; counter++){
-      xaxis.push(indivData[counter].Confirmed);
-      yaxis.push(indivData[counter].Date);
-    }
-
-    return { xaxis, yaxis };
-  }  catch (error){}
-}
+//     console.log('indivdata');
+//     console.log(indivData);
+//     return {indivData};
+//   }  catch (error){
+//     return error;
+//   }
+// };

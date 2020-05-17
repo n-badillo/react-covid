@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Cards, Charts } from './components';
+import { Cards, Charts, About } from './components';
 import Header from './components/header';
 import { fetchData } from './api';
 
@@ -20,8 +20,15 @@ class App extends React.Component {
     return (
       <div>
         <Header />
+        <div style={{margin: "50px 0px 50px 0px"}}>
+        <Charts data={data} />
+        </div>
+        <div style={{margin: "50px 0px 50px 0px"}}>
         <Cards data={data}/>
-        
+        </div>
+        <div style={{margin: "50px 0px 50px 0px"}}>
+        <About />
+        </div>
       </div>
     );
   }

@@ -12,6 +12,7 @@
     "cra-template": "1.0.3",
     "d3-fetch": "^1.1.2",
     "datamaps": "^0.5.9",
+    "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-chartjs-2": "^2.9.0",

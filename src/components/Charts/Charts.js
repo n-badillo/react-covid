@@ -1,31 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import {fetchDailyData } from '../../api';
+import { fetchData } from '../../api';
 import { Line } from 'react-chartjs-2';
 
-const Chart = () => {
+const Chart = ({ data: {Confirmed, Active, Deaths, Recovered, cDate, xlabels, ylabels }}) => {
+  console.log(xlabels);
+    console.log(ylabels);
   const [dailyData, setDailyData] = useState({});
 
   useEffect (() => {
     const fetchAPI = async () => {
-      setDailyData(await fetchDailyData()); 
-    }
+    const initialDailyData = await fetchData(); 
 
-    console.log(dailyData);
+    setDailyData(initialDailyData);
+    };
 
     fetchAPI();
-  });
+  }, []);
+
+
 
   const lineChart = (
-    dailyData[0] ? (
-    <Line 
-      data = {{labels: dailyData(({ date }) => date),
-    datasets: [{}, {}]}}
-    />) : null 
+      <Line data={{
+        labels: xlabels,
+        datasets: [{
+              label: 'Confirmed Cases',
+              fillColor : "rgba(172,194,132,0.4)",
+              strokeColor : "#ACC26D",
+              borderColor : "##ACC26D",
+              pointStrokeColor : "#9DB86D",
+              data : ylabels
+          }],
+      }}
+      />
   );
 
   return (
-    <h1>Chart</h1>
-  )
-}
+    <div className="container">
+      <center><h1>COVID-19 Data for the United States</h1></center>
+      {lineChart}
+    </div>
+  );
+};
 
 export default Chart;

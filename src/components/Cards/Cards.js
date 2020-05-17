@@ -1,13 +1,14 @@
 import React from 'react';
 import CountUp from 'react-countup';
 
-const Cards = ({ data: {Confirmed, Active, Deaths, Recovered } }) => {
-  console.log(Recovered);
+const Cards = ({ data: {Confirmed, Active, Deaths, Recovered, cDate, xlabels, ylabels } }) => {
   if (!Recovered){
     
     return '';  
   } 
   return (
+
+    
     <div className="container">
       <div className="row">
         <div className ="col">
@@ -21,7 +22,8 @@ const Cards = ({ data: {Confirmed, Active, Deaths, Recovered } }) => {
               end = {Recovered}
               duration = {1.5}
               separator = ","
-              /></h3></center>
+              /></h3>
+              <small>Data retrieved on {cDate}</small></center>
             </div>
           </div> 
         </div>
@@ -36,7 +38,8 @@ const Cards = ({ data: {Confirmed, Active, Deaths, Recovered } }) => {
               end = {Confirmed}
               duration = {2.0}
               separator = ","
-              /></h3></center>
+              /></h3>
+              <small>Data retrieved on {cDate}</small></center>
             </div>
           </div> 
         </div>
@@ -51,7 +54,8 @@ const Cards = ({ data: {Confirmed, Active, Deaths, Recovered } }) => {
               end = {Deaths}
               duration = {2.5}
               separator = ","
-              /></h3></center>
+              /></h3>
+              <small>Data retrieved on {cDate}</small></center>
             </div>
           </div> 
         </div>
