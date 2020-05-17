@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { invalid } from 'moment';
 
 const url = 'https://api.covid19api.com/total/country/united-states';
 
